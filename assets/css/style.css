@@ -166,6 +166,33 @@ header .navlinks img:hover {
   grid-template-columns: 1fr 0.2fr;
   grid-gap: 1em;
 }
+.landpage .row-2 .calc_wrapper .calculator .row-2 .inputs_holder .inputs input {
+  border: 1px solid #707070;
+  border-radius: 8px;
+  padding: 0.5em;
+  font-size: 16px;
+  color: #003c6e;
+}
+.landpage
+  .column-2
+  .row-2.first
+  .calc_wrapper
+  .calculator
+  .row-2
+  .inputs_holder
+  #emptyfield {
+  margin-top: -3.9em;
+  border: 2px solid red;
+  position: absolute;
+  padding: 0.3em;
+  color: rgb(0, 0, 0);
+  background-color: #ff00001f;
+  font-size: 13px;
+  min-width: 2em;
+  margin-left: 4em;
+  border-radius: 4px;
+  width: 14em;
+}
 .landpage
   .row-2
   .calc_wrapper
@@ -182,33 +209,6 @@ header .navlinks img:hover {
   transform: rotate(70deg);
   right: 0em;
   bottom: -0.5em;
-}
-.landpage .row-2 .calc_wrapper .calculator .row-2 .inputs_holder .inputs input {
-  border: 1px solid #707070;
-  border-radius: 8px;
-  padding: 0.5em;
-  font-size: 16px;
-  color: #003c6e;
-}
-.landpage
-  .column-2
-  .row-2.first
-  .calc_wrapper
-  .calculator
-  .row-2
-  .inputs_holder
-  #emptyfield {
-  margin-top: -4.2em;
-  border: 2px solid red;
-  position: absolute;
-  padding: 0.3em;
-  color: rgb(0, 0, 0);
-  background-color: #ff00001f;
-  font-size: 13px;
-  min-width: 2em;
-  margin-left: 4em;
-  border-radius: 4px;
-  width: 14em;
 }
 .landpage
   .row-2
@@ -234,7 +234,7 @@ header .navlinks img:hover {
 }
 .landpage .row-2 .calc_wrapper .calculator .row-3 .deductions .alert {
   position: absolute;
-  margin-left: -5.2em;
+  margin-left: -5em;
   width: 40%;
   margin-top: 2em;
   text-align: right;
@@ -255,7 +255,7 @@ header .navlinks img:hover {
   padding: 0.3em;
   border-bottom: 2px solid #ff0000;
   transform: rotate(145deg);
-  right: -0.8em;
+  right: -0.6em;
 }
 .landpage .row-2 .calc_wrapper .calculator .row-3 .deductions {
   position: relative;
