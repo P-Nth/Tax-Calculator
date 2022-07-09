@@ -86,7 +86,11 @@ const calculateNSSFFee = () => {
     alertMessage.innerHTML = "";
     alertMessage.classList.add("hide");
     if (nssfOld.checked === true) {
-      NSSFFee = NSSFoldRate;
+      if (montlySalary() >= lowerLimit) {
+        NSSFFee = NSSFoldRate;
+      } else {
+        NSSFFee = 0;
+      }
     } else {
       NSSFFee = nssfTieredFee();
     }
@@ -128,32 +132,49 @@ const calculateTaxableIncome = () => {
 
 const calculateTaxOnTaxableIncome = () => {
   let tax;
+  let fll = 6000;
+  let ful = 12298;
+  let sll = 12299;
+  let sul = 23885;
+  let tll = 23886;
+  let tul = 35472;
+  let foll = 35473;
+  let foul = 47059;
+  let classWidth = 11586;
   switch (true) {
-    case montlySalary() < 12298:
-      tax = montlySalary() * 0.1;
+    case calculateTaxableIncome() >= fll && calculateTaxableIncome() < sll:
+      tax = calculateTaxableIncome() * 0.1;
       break;
-    case montlySalary() > 12298 && montlySalary() < 23885:
-      tax = montlySalary() * 0.15;
+    case calculateTaxableIncome() > sll && calculateTaxableIncome() < tll:
+      tax = ful * 0.1;
+      tax += (calculateTaxableIncome() - ful) * 0.15;
       break;
-    case montlySalary() > 23885 && montlySalary() < 35472:
-      tax = montlySalary() * 0.2;
+    case calculateTaxableIncome() > tll && calculateTaxableIncome() < foll:
+      tax = ful * 0.1 + classWidth * 0.15;
+      tax += (calculateTaxableIncome() - sul) * 0.2;
       break;
-    case montlySalary() > 35472 && montlySalary() < 47059:
-      tax = montlySalary() * 0.25;
+    case calculateTaxableIncome() > foll && calculateTaxableIncome() <= foul:
+      tax = ful * 0.1 + classWidth * 0.15 + classWidth * 0.2;
+      tax += (calculateTaxableIncome() - tul) * 0.25;
       break;
-    case montlySalary() > 47059:
-      tax = montlySalary() * 0.3;
+    case calculateTaxableIncome() > foul:
+      tax =
+        ful * 0.1 + classWidth * 0.15 + classWidth * 0.2 + classWidth * 0.25;
+      tax += (calculateTaxableIncome() - foul) * 0.3;
       break;
+    default:
+      tax = 0;
   }
   return tax;
 };
 
 const checkRelief = () => {
   let relevantRelief = 0;
-  relevantRelief = calculateTaxOnTaxableIncome() - Relief;
-  if (relevantRelief <= 1000) {
-    relevantRelief = 0;
-  } else relevantRelief = Relief;
+  if (montlySalary() < 24000) {
+    relevantRelief = calculateTaxOnTaxableIncome();
+  } else {
+    relevantRelief = Relief;
+  }
   return relevantRelief;
 };
 
@@ -177,55 +198,66 @@ const caclulateNHIFFee = () => {
   NHIFFee = 0;
   if (nhifCheckbox.checked === true) {
     switch (true) {
-      case montlySalary() > 1000 && montlySalary() <= 5999:
+      case calculateTaxableIncome() > 1000 && calculateTaxableIncome() <= 5999:
         NHIFFee = 150;
         break;
-      case montlySalary() > 5999 && montlySalary() <= 7999:
+      case calculateTaxableIncome() > 5999 && calculateTaxableIncome() <= 7999:
         NHIFFee = 300;
         break;
-      case montlySalary() > 7999 && montlySalary() <= 11999:
+      case calculateTaxableIncome() > 7999 && calculateTaxableIncome() <= 11999:
         NHIFFee = 400;
         break;
-      case montlySalary() > 11999 && montlySalary() <= 14999:
+      case calculateTaxableIncome() > 11999 &&
+        calculateTaxableIncome() <= 14999:
         NHIFFee = 500;
         break;
-      case montlySalary() > 14999 && montlySalary() <= 19999:
+      case calculateTaxableIncome() > 14999 &&
+        calculateTaxableIncome() <= 19999:
         NHIFFee = 600;
         break;
-      case montlySalary() > 19999 && montlySalary() <= 24999:
+      case calculateTaxableIncome() > 19999 &&
+        calculateTaxableIncome() <= 24999:
         NHIFFee = 750;
         break;
-      case montlySalary() > 24999 && montlySalary() <= 29999:
+      case calculateTaxableIncome() > 24999 &&
+        calculateTaxableIncome() <= 29999:
         NHIFFee = 850;
         break;
-      case montlySalary() > 29999 && montlySalary() <= 34999:
+      case calculateTaxableIncome() > 29999 &&
+        calculateTaxableIncome() <= 34999:
         NHIFFee = 900;
         break;
-      case montlySalary() > 34999 && montlySalary() <= 39999:
+      case calculateTaxableIncome() > 34999 &&
+        calculateTaxableIncome() <= 39999:
         NHIFFee = 950;
         break;
-      case montlySalary() > 39999 && montlySalary() < 44999:
+      case calculateTaxableIncome() > 39999 && calculateTaxableIncome() < 44999:
         NHIFFee = 1000;
         break;
-      case montlySalary() > 44999 && montlySalary() <= 49999:
+      case calculateTaxableIncome() > 44999 &&
+        calculateTaxableIncome() <= 49999:
         NHIFFee = 1100;
         break;
-      case montlySalary() > 49999 && montlySalary() <= 59999:
+      case calculateTaxableIncome() > 49999 &&
+        calculateTaxableIncome() <= 59999:
         NHIFFee = 1200;
         break;
-      case montlySalary() > 59999 && montlySalary() <= 69999:
+      case calculateTaxableIncome() > 59999 &&
+        calculateTaxableIncome() <= 69999:
         NHIFFee = 1300;
         break;
-      case montlySalary() > 69999 && montlySalary() <= 79999:
+      case calculateTaxableIncome() > 69999 &&
+        calculateTaxableIncome() <= 79999:
         NHIFFee = 1400;
         break;
-      case montlySalary() > 79999 && montlySalary() <= 89999:
+      case calculateTaxableIncome() > 79999 &&
+        calculateTaxableIncome() <= 89999:
         NHIFFee = 1500;
         break;
-      case montlySalary() > 89999 && montlySalary() < 99999:
+      case calculateTaxableIncome() > 89999 && calculateTaxableIncome() < 99999:
         NHIFFee = 1600;
         break;
-      case montlySalary() > 99999:
+      case calculateTaxableIncome() > 99999:
         NHIFFee = 1700;
         break;
     }
@@ -239,19 +271,20 @@ const calculateNetPay = () => {
     NetPay =
       calculateTaxableIncome() -
       (calculateTaxAfterRelief() + caclulateNHIFFee());
-  } else return (NetPay = montlySalary());
+  } else return (NetPay = calculateTaxableIncome() - caclulateNHIFFee());
   return NetPay;
 };
 
+// output to display
 submit.addEventListener("click", () => {
+  analyze.innerHTML = `<span id="call_message">Calculating...</span>`;
   if (montlySalary() >= 0) {
     if (calculateNSSFFee() >= 0) {
-      analyze.innerHTML = `<span id="call_message">Calculating...</span>`;
       submit.style.backgroundColor = "#6090ff";
       submit.style.color = "white";
       submit.style.border = "1px solid transparent";
       setTimeout(function calculating() {
-        analyze.innerHTML = "";
+        // analyze.innerHTML = "";
         output.classList.remove("hide");
         scroller.classList.remove("hide");
         submit.style.backgroundColor = "transparent";

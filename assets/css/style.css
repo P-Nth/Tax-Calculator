@@ -376,11 +376,14 @@ header .navlinks img:hover {
   opacity: 0;
 }
 .doing_math {
+  position: relative;
   display: grid;
   justify-content: center;
+  margin: 0 auto;
+  top: 24em;
+  margin-bottom: -3em;
 }
 .doing_math #call_message {
-  top: 20em;
   width: 15em;
   text-align: center;
   padding: 0.5em 1em;
@@ -389,8 +392,21 @@ header .navlinks img:hover {
   font-size: 20px;
   border-radius: 0 0.6em 0.6em 0;
   border-left: 0.8em solid #ff4000;
-  margin-left: 1em;
-  position: absolute;
+}
+@media all and (min-width: 370px) {
+  .landpage .row-2 .calc_wrapper .calculator .row-2,
+  .landpage .row-2 .calc_wrapper .calculator .row-3,
+  .landpage .row-2 .calc_wrapper .calculator .row-4 {
+    margin: 2em 2.3em;
+  }
+}
+@media all and (min-width: 435px) {
+  .doing_math {
+    top: 21.5em;
+  }
+  .doing_math #call_message {
+    width: 17em;
+  }
 }
 @media all and (min-width: 460px) {
   .landpage .columns {
@@ -398,6 +414,14 @@ header .navlinks img:hover {
   }
   .wrapper .output {
     padding: 1em 2em 2em 2em;
+  }
+  .doing_math {
+    top: 23em;
+  }
+}
+@media all and (min-width: 557px) {
+  .doing_math {
+    top: 20em;
   }
 }
 @media all and (min-width: 600px) {
