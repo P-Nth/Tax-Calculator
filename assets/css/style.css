@@ -230,11 +230,11 @@ header .navlinks img:hover {
 }
 .landpage .row-2 .calc_wrapper .calculator .row-3 {
   display: grid;
-  grid-gap: 0.5em;
+  grid-gap: 1em;
 }
 .landpage .row-2 .calc_wrapper .calculator .row-3 .deductions .alert {
   position: absolute;
-  margin-left: -5em;
+  margin-left: -8em;
   width: 40%;
   margin-top: 2em;
   text-align: right;
@@ -261,7 +261,7 @@ header .navlinks img:hover {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 0.5fr;
+  grid-template-columns: 1fr 0.1fr;
   grid-gap: 1em;
 }
 .landpage .row-2 .calc_wrapper .calculator .row-3 .deductions p {
@@ -269,6 +269,34 @@ header .navlinks img:hover {
   margin: 0;
   align-self: center;
   font-weight: bold;
+}
+.landpage .row-2 .calc_wrapper .deductions .input_alert input[type="checkbox"],
+.landpage .row-2 .calc_wrapper .deductions .input_alert input[type="checkbox"] {
+  width: 50px;
+  -webkit-appearance: none;
+  background-color: #e6f1ff;
+  outline: none;
+  border-radius: 1em;
+  transition: 0.3s;
+}
+.row-2 .calc_wrapper .deductions .input_alert input:checked[type="checkbox"],
+.row-2 .calc_wrapper .deductions .input_alert input:checked[type="checkbox"] {
+  background-color: #291afd;
+}
+.row-2 .calc_wrapper .deductions .input_alert input[type="checkbox"]::before,
+.row-2 .calc_wrapper .deductions .input_alert input[type="checkbox"]::before {
+  content: "";
+  width: 25px;
+  height: 100%;
+  transition: 0.2s;
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+}
+.calc_wrapper .deductions .input_alert input:checked[type="checkbox"]::before,
+.calc_wrapper .deductions .input_alert input:checked[type="checkbox"]::before {
+  margin-left: 25px;
 }
 .landpage .row-2 .calc_wrapper .calculator .row-3 .deductions .input_alert {
   display: grid;
@@ -544,9 +572,6 @@ header .navlinks img:hover {
   .landpage .row-1 .call_to_action #send {
     max-width: 5em;
   }
-  .landpage .row-2 .calc_wrapper .calculator .row-3 .deductions .alert {
-    margin-left: -3.65em;
-  }
   .landpage
     .column-2
     .row-2.first
@@ -557,6 +582,9 @@ header .navlinks img:hover {
     #emptyfield {
     margin-top: -4.2em;
     margin-left: 12.3em;
+  }
+  .landpage .row-2 .calc_wrapper .calculator .row-3 .deductions .alert {
+    margin-left: -7.7em;
   }
   .landpage .row-2 .calc_wrapper .calculator {
     border-radius: 1em;

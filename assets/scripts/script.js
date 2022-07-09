@@ -1,4 +1,6 @@
 // inputs
+let periodMonthly = document.querySelector("#monthly");
+let periodYearly = document.querySelector("#yearly");
 let salaryInput = document.querySelector(".incomeinput");
 let benefitsInput = document.querySelector(".benefitsInput");
 let addBenefitsInput = document.querySelector(".addBenefits");
@@ -19,17 +21,32 @@ let lowerLimit = 6000;
 let upperLimit = 18000;
 let NSSFFee, NSSFoldRate, NSSFTieredRate, NSSFPercentage, NHIFFee, Benefits;
 
+// change period
+let periodState = true;
+periodMonthly.addEventListener("click", () => {
+  periodState = true;
+  periodMonthly.style.color = "#ffffff";
+  periodMonthly.style.backgroundColor = "#6090ff";
+  periodYearly.style.color = "#003c6e";
+  periodYearly.style.backgroundColor = "rgba(255, 255, 255, 0.57)";
+});
+
+periodYearly.addEventListener("click", () => {
+  periodState = false;
+  periodMonthly.style.color = " #003c6e";
+  periodMonthly.style.backgroundColor = " rgba(255, 255, 255, 0.57)";
+  periodYearly.style.color = "#ffffff";
+  periodYearly.style.backgroundColor = "#6090ff";
+});
+
 // functions
 const montlySalary = () => {
   let salary;
   if (salaryInput.value !== "" && Number(salaryInput.value) >= 1000) {
     emptyField.innerHTML = "";
     emptyField.classList.add("hide");
-    if (salaryInput.value < 230000) {
-      salary = salaryInput.value;
-    } else {
-      salary = salaryInput.value / 12;
-    }
+
+    salary = Number(salaryInput.value);
   } else {
     emptyField.classList.remove("hide");
     emptyField.innerHTML = `<span id="empty_field">This Field cannot be empty. Enter Values greater than 999</span>`;
@@ -165,6 +182,7 @@ const calculateTaxOnTaxableIncome = () => {
     default:
       tax = 0;
   }
+
   return tax;
 };
 
@@ -262,6 +280,7 @@ const caclulateNHIFFee = () => {
         break;
     }
   } else NHIFFee = NHIFFee;
+
   return NHIFFee;
 };
 
@@ -291,7 +310,8 @@ submit.addEventListener("click", () => {
         submit.style.color = "#003c6e";
         submit.style.border = "1px solid #707070";
       }, 1500);
-      document.querySelector("#display").innerHTML = `
+      if (periodState === true) {
+        document.querySelector("#display").innerHTML = `
       <div id="row-1">
         <p>INCOME BEFORE PENSION DEDUCTION</p>
         <p>${montlySalary()}</p>
@@ -341,6 +361,58 @@ submit.addEventListener("click", () => {
         <p>${calculateNetPay()}</p>
       </div>
       `;
+      } else {
+        document.querySelector("#display").innerHTML = `
+        <div id="row-1">
+          <p>INCOME BEFORE PENSION DEDUCTION</p>
+          <p>${montlySalary() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>DEDUCTIBLE NSSF PENSION CONTRIBUTION</p>
+          <p>${calculateNSSFFee() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>INCOME AFTER PENSION DEDUCTIONS</p>
+          <p>${calculateIncomeAfterPension() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>BENEFITS IN KIND</p>
+          <p>${calculateBenefits() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>TAXABLE INCOME</p>
+          <p>${calculateTaxableIncome() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>TAX ON TAXABLE INCOME</p>
+          <p>${calculateTaxOnTaxableIncome() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>PERSONAL RELIEF</p>
+          <p>${checkRelief() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>TAX NET OF RELIEF</p>
+          <p>${calculateTaxAfterRelief() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>PAYEE</p>
+          <p>${calculateTaxAfterRelief() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>CHARGABLE INCOME</p>
+          <p>${calculateTaxableIncome() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>NHIF CONTRIBUTION</p>
+          <p>${caclulateNHIFFee() * 12}</p>
+        </div>
+        <div id="row-1">
+          <p>NET PAY</p>
+          <p>${calculateNetPay() * 12}</p>
+        </div>
+        `;
+      }
     } else {
       return calculateNSSFFee();
     }
