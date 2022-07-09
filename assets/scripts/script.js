@@ -277,14 +277,14 @@ const calculateNetPay = () => {
 
 // output to display
 submit.addEventListener("click", () => {
-  analyze.innerHTML = `<span id="call_message">Calculating...</span>`;
   if (montlySalary() >= 0) {
     if (calculateNSSFFee() >= 0) {
+      analyze.innerHTML = `<span id="call_message">Calculating...</span>`;
       submit.style.backgroundColor = "#6090ff";
       submit.style.color = "white";
       submit.style.border = "1px solid transparent";
       setTimeout(function calculating() {
-        // analyze.innerHTML = "";
+        analyze.innerHTML = "";
         output.classList.remove("hide");
         scroller.classList.remove("hide");
         submit.style.backgroundColor = "transparent";

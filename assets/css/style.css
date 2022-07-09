@@ -467,11 +467,18 @@ header .navlinks img:hover {
   .landpage .columns .column-1 .row-1 {
     margin: 0 0 3em 0;
   }
+  .doing_math {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    margin: 0 auto;
+    top: -5em;
+  }
   .doing_math #call_message {
     position: absolute;
     top: 1em;
     width: 19em;
-    margin-left: 2.5em;
+    margin-left: 3.5em;
   }
   .landpage .row-1 .headings {
     grid-gap: 3em;
