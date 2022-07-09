@@ -129,14 +129,18 @@ const calculateIncomeAfterPension = () => {
 
 const calculateBenefits = () => {
   Benefits = 0;
-  if (benefitsInput.value !== "" && addBenefitsInput.value !== "") {
-    Benefits = Number(benefitsInput.value) + Number(addBenefitsInput.value);
-  } else if (benefitsInput.value !== "" && addBenefitsInput.value === "") {
-    Benefits = Number(benefitsInput.value);
-  } else if (benefitsInput.value === "" && addBenefitsInput.value !== "") {
-    Benefits = Number(addBenefitsInput.value);
+  if (montlySalary() >= lowerLimit) {
+    if (benefitsInput.value !== "" && addBenefitsInput.value !== "") {
+      Benefits = Number(benefitsInput.value) + Number(addBenefitsInput.value);
+    } else if (benefitsInput.value !== "" && addBenefitsInput.value === "") {
+      Benefits = Number(benefitsInput.value);
+    } else if (benefitsInput.value === "" && addBenefitsInput.value !== "") {
+      Benefits = Number(addBenefitsInput.value);
+    } else {
+      Benefits = 0;
+    }
   } else {
-    Benefits = 0;
+    Benefits = Benefits;
   }
   return Benefits;
 };
