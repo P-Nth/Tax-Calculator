@@ -290,7 +290,7 @@ submit.addEventListener("click", () => {
         submit.style.backgroundColor = "transparent";
         submit.style.color = "#003c6e";
         submit.style.border = "1px solid #707070";
-      }, 2000);
+      }, 1500);
       document.querySelector("#display").innerHTML = `
       <div id="row-1">
         <p>INCOME BEFORE PENSION DEDUCTION</p>

@@ -381,7 +381,7 @@ header .navlinks img:hover {
   justify-content: center;
   margin: 0 auto;
   top: 24em;
-  margin-bottom: -3em;
+  margin-bottom: 0em;
 }
 .doing_math #call_message {
   width: 15em;
@@ -394,6 +394,9 @@ header .navlinks img:hover {
   border-left: 0.8em solid #ff4000;
 }
 @media all and (min-width: 370px) {
+  .landpage .row-1 .headings {
+    grid-gap: 3em;
+  }
   .landpage .row-2 .calc_wrapper .calculator .row-2,
   .landpage .row-2 .calc_wrapper .calculator .row-3,
   .landpage .row-2 .calc_wrapper .calculator .row-4 {
