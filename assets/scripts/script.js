@@ -147,12 +147,13 @@ const calculateBenefits = () => {
 
 const calculateTaxableIncome = () => {
   let taxableIncome = 0;
-  taxableIncome = calculateIncomeAfterPension() - calculateBenefits();
+  taxableIncome = calculateIncomeAfterPension() + calculateBenefits();
   return taxableIncome;
 };
 
 const calculateTaxOnTaxableIncome = () => {
   let tax;
+  let taxIncome = calculateTaxableIncome() + 2400;
   let fll = 6000;
   let ful = 12298;
   let sll = 12299;
@@ -163,31 +164,31 @@ const calculateTaxOnTaxableIncome = () => {
   let foul = 47059;
   let classWidth = 11586;
   switch (true) {
-    case calculateTaxableIncome() >= fll && calculateTaxableIncome() < sll:
-      tax = calculateTaxableIncome() * 0.1;
+    case taxIncome >= fll && taxIncome < sll:
+      tax = taxIncome * 0.1;
       break;
-    case calculateTaxableIncome() > sll && calculateTaxableIncome() < tll:
+    case taxIncome > ful && taxIncome < tll:
       tax = ful * 0.1;
-      tax += (calculateTaxableIncome() - ful) * 0.15;
+      tax += (taxIncome - ful) * 0.15;
       break;
-    case calculateTaxableIncome() > tll && calculateTaxableIncome() < foll:
+    case taxIncome > sul && taxIncome < foll:
       tax = ful * 0.1 + classWidth * 0.15;
-      tax += (calculateTaxableIncome() - sul) * 0.2;
+      tax += (taxIncome - sul) * 0.2;
       break;
-    case calculateTaxableIncome() > foll && calculateTaxableIncome() <= foul:
+    case taxIncome > tul && taxIncome < foul:
       tax = ful * 0.1 + classWidth * 0.15 + classWidth * 0.2;
-      tax += (calculateTaxableIncome() - tul) * 0.25;
+      tax += (taxIncome - tul) * 0.25;
       break;
-    case calculateTaxableIncome() > foul:
+    case taxIncome > foul:
       tax =
         ful * 0.1 + classWidth * 0.15 + classWidth * 0.2 + classWidth * 0.25;
-      tax += (calculateTaxableIncome() - foul) * 0.3;
+      tax += (taxIncome - foul) * 0.3;
       break;
     default:
       tax = 0;
   }
 
-  return tax;
+  return tax.toFixed(2);
 };
 
 const checkRelief = () => {
